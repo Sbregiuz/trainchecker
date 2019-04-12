@@ -14,7 +14,8 @@ class ApiHandler(BaseHandler):
 			'/api/ping': self.handle_ping,
 			'/api/stations': self.handle_stations,
 			'/api/stations/%': self.handle_station,
-			'/api/test/%/test123/%/test': self.handle_test
+			'/api/test/%/test123/%/test': self.handle_test,
+			'/api/testendpoint': self.handle_testendpoint
 		}
 
 	def handle_restful_request(self, local_route, request_route, route_exec, params=[]):
@@ -42,6 +43,8 @@ class ApiHandler(BaseHandler):
 	def make_response(self, rtn, obj):
 		return (rtn, 'application/json', json.dumps(obj))
 
+	def handle_testendpoint(self, params):
+		return self.make_response(200, { 'dio': 'cane' })
 
 	def handle_test(self, params):
 		return self.make_response(200, params)
